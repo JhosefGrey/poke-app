@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center ">
+            <h4>{{ pokemon.name | titlecase }}</h4>
+        </div>
+        <div class="col-12 d-flex justify-content-center ">
+            <img [src]="pokemon.sprites.back_default" [alt]="pokemon.name">
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-12 table-responsive">
+            <table class="table table-sm table-striped  caption-top">
+                <caption>Tipos</caption>
+                <thead>
+                    <th>Nombre</th>
+                </thead>
+                <tbody>
+                    @for (type of pokemon.types; track $index) {
+                        <tr>
+                            <td>{{ type.type.name| titlecase }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-12 table-responsive">
+            <table class="table table-sm table-striped  caption-top">
+                <caption>Estadisticas</caption>
+                <thead>
+                    <th>Nombre</th>
+                    <th>Base</th>
+                    <th>Esfuerzo</th>
+
+                </thead>
+                <tbody>
+                    @for (stats of pokemon.stats; track $index) {
+                        <tr>
+                            <td>{{ stats.stat.name| titlecase }}</td>
+                            <td align="right">{{ stats.base_stat| number : '1.0-0' }}</td>
+                            <td  align="right">{{ stats.effort | number : '1.0-0' }}</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 table-responsive">
+            <table class="table table-sm table-striped  caption-top">
+                <caption>Habilidades</caption>
+                <thead>
+                    <th>Nombre</th>
+                </thead>
+                <tbody>
+                    @for (hab of pokemon.abilities; track $index) {
+                        <tr>
+                            <td>{{ hab.ability.name | titlecase }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-12 table-responsive">
+            <table class="table table-sm table-striped  caption-top">
+                <caption>Movimientos</caption>
+                <thead>
+                    <th>Nombre</th>
+                </thead>
+                <tbody>
+                    @for (hab of pokemon.moves.slice(0,5); track $index) {
+                        <tr>
+                            <td>{{ hab.move.name| titlecase }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-12 table-responsive">
+            <table class="table table-sm table-striped  caption-top">
+                <caption>Apariciones</caption>
+                <thead>
+                    <th>Nombre</th>
+                </thead>
+                <tbody>
+                    @for (game of pokemon.game_indices; track $index) {
+                        <tr>
+                            <td>{{ game.version.name| titlecase }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

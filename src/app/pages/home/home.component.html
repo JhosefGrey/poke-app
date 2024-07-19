@@ -1,0 +1,42 @@
+<div class="container">
+
+    <form class="row g-3" #busquedaForm="ngForm" (ngSubmit)="search()">
+        <div class="col-12">
+            <label for="txtPokemon" class="form-label">Pokemon:</label>
+            <div class="input-group mb-3">
+                <input type="text" [(ngModel)]="termino" name="termino" #t="ngModel" required class="form-control" id="txtPokemon">
+                <button  [disabled]="busquedaForm.invalid" (click)="search()" class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
+            </div>
+            <span class="text-danger mt-2" *ngIf="t.invalid && (t.touched || t.dirty)">Ingrese un nombre valido</span>
+        </div>
+    </form>
+
+    <hr>
+
+    <div class="row">
+        @for (pokemon of objInicio.results; track $index) {
+        <div class="col-12 col-md-4 col-lg-3 g-3">
+            <div class="card">
+                <!-- <img [src]="pokemon.url" class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h5 class="card-title">{{ pokemon.name | titlecase }}</h5>
+                    <!-- <p class="card-text">{{  }}</p> -->
+                   <button class="btn btn-sm btn-primary" (click)="showDetail(pokemon.name)" >Ver más...</button>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+    <div class="row" *ngIf="objInicio.results.length > 0">
+        <div class="col-12 d-flex justify-content-end ">
+            <div class="btn-group mt-2">
+                <button class="btn-sm btn btn-primary" *ngIf="objInicio.previous !== null"><i class="bi bi-arrow-left"
+                        (click)="prev()"></i></button>
+                <button class="btn-sm btn btn-primary" *ngIf="objInicio.next !== null"><i class="bi bi-arrow-right"
+                        (click)="next()"></i></button>
+            </div>
+        </div>
+    </div>
+
+</div>

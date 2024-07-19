@@ -1,0 +1,5 @@
+<div class="list-group">
+    @for (poke of pokes; track $index) {
+        <a [routerLink]="['/pokemon', poke]" class="list-group-item list-group-item-action">{{ poke }}</a>
+    }
+</div>
